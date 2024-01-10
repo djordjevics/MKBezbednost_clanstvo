@@ -1,10 +1,9 @@
 ﻿using Services.Enums;
 
-namespace Services.Models
+namespace Services.Models;
+
+public class TrainingLevelDisplay
 {
-    public class TrainingLevelDisplay
-    {
-        public TrainingLevel Level { get; set; }
-        public required string DisplayName { get; set; }
-    }
+    public TrainingLevel Level { get; set; }
+    public required string DisplayName { get; set; }
 }

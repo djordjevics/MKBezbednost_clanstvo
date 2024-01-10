@@ -1,9 +1,8 @@
-﻿namespace Services.Enums
+﻿namespace Services.Enums;
+
+public enum TrainingLevel
 {
-    public enum TrainingLevel
-    {
-        Osnovni = 0,
-        Napredni = 1,
-        Offroad = 2
-    }
+    Osnovni = 0,
+    Napredni = 1,
+    Offroad = 2
 }

@@ -1,6 +1,5 @@
-﻿namespace Services.Services
+﻿namespace Services.Services;
+
+public class AuditService
 {
-    public class AuditService
-    {
-    }
 }

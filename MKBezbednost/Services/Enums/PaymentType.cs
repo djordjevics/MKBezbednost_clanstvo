@@ -1,8 +1,7 @@
-﻿namespace Services.Enums
+﻿namespace Services.Enums;
+
+public enum PaymentType
 {
-    public enum PaymentType
-    {
-        BankTransfer = 0,
-        Cash = 1
-    }
+    BankTransfer = 0,
+    Cash = 1
 }

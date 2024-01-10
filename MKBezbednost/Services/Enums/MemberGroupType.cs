@@ -1,10 +1,9 @@
-﻿namespace Services.Enums
+﻿namespace Services.Enums;
+
+public enum MemberGroupType
 {
-    public enum MemberGroupType
-    {
-        Uprava,
-        Redovni,
-        DecaPrijatelji,
-        Pocasni
-    }
+    Uprava,
+    Redovni,
+    DecaPrijatelji,
+    Pocasni
 }
