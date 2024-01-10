@@ -17,6 +17,6 @@ namespace DataLayer.DataModels
         public DateOnly? JoinDate { get; set; }
         public DateOnly? RemovalDate { get; set; }
         public byte[]? Image { get; set; }
-        public DateTime? LastUpdate { get; set; }
+        public DateTime LastUpdateTimestamp { get; set; }
     }
 }
