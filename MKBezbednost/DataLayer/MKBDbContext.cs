@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer;
 
-public class MKBContext : DbContext
+public class MKBDbContext : DbContext, IMKBDbContext
 {
     public DbSet<AuditLog> AuditLogs { get; set; }
     public DbSet<Member> Members { get; set; }
@@ -13,30 +13,43 @@ public class MKBContext : DbContext
     public DbSet<Gear> Gears { get; set; }
     public DbSet<Training> Tranings { get; set; }
 
-    public string DbPath { get; }
-
-    public MKBContext()
+    public MKBDbContext()
     {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(path, "mkb.db");
     }
 
     // The following configures EF to create a Sqlite database file in the
     // special "local" folder for your platform.
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
+    {
+        var DbPath = Path.GetFullPath("./mkb.db");
 
+        options.UseSqlite($"Data Source={DbPath}");
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<AuditLog>()
-            .Property(e => e.Timestamp)
-            .HasDefaultValue(DateTime.Now);
+        modelBuilder.Entity<Member>()
+            .HasKey(e => e.Id);
 
         modelBuilder.Entity<Member>()
-            .Property(e => e.LastUpdateTimestamp)
-            .HasDefaultValue(DateTime.Now);
+            .HasMany(e => e.MemberCards)
+            .WithOne(e => e.Member);
+
+        modelBuilder.Entity<Member>()
+            .HasMany(e => e.MemberNotes)
+            .WithOne(e => e.Member);
+
+        modelBuilder.Entity<Member>()
+            .HasMany(e => e.Memberships)
+            .WithOne(e => e.Member);
+
+        modelBuilder.Entity<Member>()
+            .HasMany(e => e.Trainings)
+            .WithOne(e => e.Member);
+
+        modelBuilder.Entity<Member>()
+            .HasOne(e => e.Gear)
+            .WithOne(e => e.Member);
     }
 }

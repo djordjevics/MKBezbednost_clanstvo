@@ -18,5 +18,12 @@ namespace DataLayer.DataModels
         public DateOnly? RemovalDate { get; set; }
         public byte[]? Image { get; set; }
         public DateTime LastUpdateTimestamp { get; set; }
+
+
+        public IList<MemberCard> MemberCards { get; set; }
+        public Gear Gear { get; set; }
+        public IList<MemberNote> MemberNotes { get; set; }
+        public IList<Membership> Memberships { get; set; }
+        public IList<Training> Trainings { get; set; }
     }
 }
