@@ -2,6 +2,8 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MKBezbednost_Members.Views;
+using System.IO;
 
 namespace MKBezbednost_Members
 {
@@ -13,10 +15,6 @@ namespace MKBezbednost_Members
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-
             HostApplicationBuilder builder = Host.CreateApplicationBuilder();
 
             var DbPath = Path.GetFullPath("./mkb.db");
@@ -27,7 +25,8 @@ namespace MKBezbednost_Members
 
             using IHost host = builder.Build();
 
-            Application.Run(new MainForm());
+            MainWindow mainWindow = new();
+            mainWindow.ShowDialog();
         }
     }
 }
