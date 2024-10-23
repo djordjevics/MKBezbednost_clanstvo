@@ -1,5 +1,6 @@
 ﻿using DataLayer.DataModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace DataLayer;
 
@@ -13,7 +14,8 @@ public class MKBDbContext : DbContext, IMKBDbContext
     public DbSet<Gear> Gears { get; set; }
     public DbSet<Training> Tranings { get; set; }
 
-    public MKBDbContext()
+    public MKBDbContext(DbContextOptions<MKBDbContext> options)
+        : base(options)
     {
     }
 
